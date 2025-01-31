@@ -1,0 +1,10 @@
+CREATE OR REPLACE TABLE `your_dataset.your_embeddings_table` AS
+        SELECT * 
+        FROM ML.GENERATE_EMBEDDINGS(
+            MODEL `your_dataset.your_embedding_model`,
+            (
+                SELECT chunk AS content
+                FROM `your_dataset.your_source_table` 
+            )
+        )
+        WHERE LENGTH(ml_generate_embedding_status) = 0;
