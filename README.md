@@ -1,0 +1,1 @@
+# Turn-BigQuery-into-a-Vector-Database-Build-a-RAG-Engine-in-4-Easy-Steps
