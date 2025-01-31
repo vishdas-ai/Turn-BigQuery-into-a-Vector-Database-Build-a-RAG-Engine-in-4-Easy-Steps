@@ -1,0 +1,19 @@
+SELECT
+    query.query,
+    base.content
+FROM
+    VECTOR_SEARCH(
+        TABLE `your_dataset.your_embeddings_table`, 
+        'ml_generate_embedding_result', -- Column containing the embeddings
+        (
+            SELECT 
+                ml_generate_embedding_result AS embedding, 
+                content AS query 
+            FROM 
+                ML.GENERATE_TEXT_EMBEDDINGS( 
+                    MODEL `your_dataset.your_embedding_model`, 
+                    (SELECT 'What did the time traveler hold in his hand?' AS content)
+                )
+        ),
+        top_k => 5
+    )
